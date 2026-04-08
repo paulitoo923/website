@@ -382,19 +382,26 @@
     /* ========== FOOTER ========== */
     footer {
       position: relative;
-      background-image: url('images/mid10.png');
-      background-size: cover;
-      background-position: center;
-      color: rgba(255, 253, 249, 0.7);
+      overflow: hidden;
+      color: var(--white);
       padding: var(--space-xl) var(--space-md) var(--space-lg);
       text-align: center;
+    }
+
+    footer .footer-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
     }
 
     footer::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(26, 26, 26, 0.55);
+      background: rgba(26, 26, 26, 0.45);
       z-index: 0;
     }
 
@@ -414,7 +421,7 @@
       font-size: 1.2rem;
       font-weight: 300;
       letter-spacing: 0.08em;
-      color: rgba(255, 253, 249, 0.8);
+      color: var(--white);
     }
 
     footer .footer-links {
@@ -431,7 +438,7 @@
     }
 
     footer .footer-links a:hover {
-      color: rgba(255, 253, 249, 0.9);
+      color: rgba(255, 255, 255, 0.6);
     }
 
     footer .footer-copy {
@@ -577,15 +584,28 @@
 
     /* ========== RESPONSIVE ========== */
     @media (max-width: 900px) {
+      .story-section {
+        padding-bottom: 0;
+      }
+
       .story-section .section-inner {
         grid-template-columns: 1fr;
         gap: var(--space-lg);
       }
 
       .story-image {
-        max-width: 400px;
-        margin: 0 auto;
         order: 1;
+        aspect-ratio: auto;
+        border-radius: 0;
+        width: calc(100% + var(--space-md) * 2);
+        margin-left: calc(var(--space-md) * -1);
+        margin-bottom: 0;
+        max-width: none;
+      }
+
+      .story-image img {
+        width: 100%;
+        max-height: 30vh;
       }
 
       .story-text {
@@ -652,6 +672,15 @@
         min-width: 200px;
       }
 
+      .story-section {
+        padding-bottom: 0;
+      }
+
+      .story-image {
+        width: calc(100% + var(--space-sm) * 2);
+        margin-left: calc(var(--space-sm) * -1);
+      }
+
       footer .footer-links {
         flex-direction: column;
         align-items: center;
@@ -697,7 +726,7 @@
       <div class="story-text">
         <h2 class="reveal" style="font-style: italic; font-weight: 300; margin-bottom: var(--space-md);">Hallo, ich bin Paul.</h2>
         <p class="reveal reveal-delay-1">
-          Ich kenne diese starke Sehnsucht, wenn alles in dir du selbst sein will, ganz in deiner Kraft. Als queerer Junge habe ich früh gelernt, Gefahr zu spüren, bevor sie da war. Ich konnte mit geschärften Antennen Räume lesen und präzise die Energien aller Leute fühlen. Das sensible Wahrnehmen war anstrengend und hat mich damals permanent überfordert. Die Welt fühlte sich bedrohlich an – bis ich tatsächlich nach einer Attacke im Krankenhaus landete. Dieser Moment war der Startpunkt für meine Reise der Selbst-Vervollständigung: noch auf Krücken startete ich mit Körpertherapie, Meditation, Familienaufstellungen, Energieheilung und duzenden andere Methoden zu forschen.
+          Ich kenne diese starke Sehnsucht, wenn alles in dir du selbst sein will, ganz in deiner Kraft. Als queerer Junge habe ich früh gelernt, Gefahr zu spüren, bevor sie da war. Ich konnte mit geschärften Antennen Räume lesen und präzise die Energien aller Leute fühlen. Das sensible Wahrnehmen war anstrengend und hat mich damals permanent überfordert. Die Welt fühlte sich bedrohlich an – bis ich tatsächlich nach einer Attacke im Krankenhaus landete. Dieser Moment war der Startpunkt für meine Reise der Selbst-Vervollständigung: noch auf Krücken startete ich mit Körpertherapie, Meditation, Familienaufstellungen, Energieheilung und dutzenden andere Methoden zu forschen.
         </p>
       </div>
     </div>
@@ -709,7 +738,7 @@
       <div class="story-text">
         <h2 class="reveal" style="font-style: italic; font-weight: 300; margin-bottom: var(--space-md);">Der Weg zur Selbst-Vervollständigung</h2>
         <p class="reveal reveal-delay-1">
-          Ich begann zu lernen wer ich bin und wie ich ich ganz selbst sein kann. Je tiefer ich in die Welten von Energie und Integration eintauchte, desto mehr lebte ich zwischen zwei Welten. Auf der einen Seite meine weltlichen Ambitionen: Oxford-Studium, Produkt-Management-Karriere, Startup-Leben. Auf der anderen Seite die immer feinstofflichere Welt: Energie-Arbeit, Ashram-Monate und Workshop-Tournee. Das Verhältnis zwischen diesen Welten verschob sich immer mehr – bis ich meinen Job kündigte, eine Beziehung beendete, aus meiner Gemeinschaft auszog und einige Jahre lang auf spirituelle (Welt-)Reise ging.
+          Ich begann zu lernen wer ich bin und wie ich ich ganz selbst sein kann. Je tiefer ich in die Welten von Energie und Integration eintauchte, desto mehr lebte ich tatsächlich zwischen den Welten. Auf der einen Seite meine weltlichen Ambitionen: Oxford-Studium, Produkt-Management-Karriere, Startup-Leben. Auf der anderen Seite die immer feinstofflicheren Faszinationen: Energie-Arbeit, Ashram-Monate und Workshop-Tourneen. Das Verhältnis zwischen diesen Welten verschob sich immer mehr – bis ich meinen Job kündigte, eine Beziehung beendete, aus meiner Gemeinschaft auszog und einige Jahre lang auf spirituelle (Welt-)Reise ging.
         </p>
       </div>
       <div class="story-image reveal">
@@ -737,7 +766,7 @@
   <section class="kontakt" id="kontakt">
     <div class="section-inner">
       <div class="kontakt-text">
-        <h2 class="reveal">So kannst du mit mir arbeiten</h2>
+        <h2 class="reveal" style="font-style: italic; font-weight: 300;">So kannst du mit mir arbeiten</h2>
         <p class="reveal reveal-delay-1">
           Ich biete aktuell 1:1-Sessions per Video an. Dabei nutzen wir besonders Energie-Arbeit, Frequenz-Heilung und Somatic Experiencing.
         </p>
@@ -751,8 +780,11 @@
 
   <!-- 7. FOOTER -->
   <footer>
+    <video class="footer-video" autoplay muted loop playsinline>
+      <source src="images/vid10.mp4" type="video/mp4">
+    </video>
     <div class="footer-inner">
-      <span class="footer-logo">Paul Sieler</span>
+      <span class="footer-logo" style="font-style: italic; text-transform: uppercase;">Paul Sieler</span>
       <ul class="footer-links">
         <li><a href="#kontakt">Session buchen</a></li>
         <li><a href="#" id="open-legal">Impressum & Datenschutz</a></li>
