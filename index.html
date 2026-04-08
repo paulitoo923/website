@@ -298,7 +298,7 @@
 
     /* ========== KONTAKT / CTA ========== */
     .kontakt {
-      background-color: var(--white);
+      background-color: var(--cream);
     }
 
     .kontakt .section-inner {
@@ -585,11 +585,11 @@
       .story-image {
         max-width: 400px;
         margin: 0 auto;
+        order: 1;
       }
 
-      /* On mobile, always show image above text */
-      .story-cream .story-image {
-        order: -1;
+      .story-text {
+        order: 0;
       }
 
       .kontakt .section-inner {
@@ -941,6 +941,7 @@
         document.body.style.overflow = '';
       }
     });
+
   </script>
 
 </body>
