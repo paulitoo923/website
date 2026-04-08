@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paul Sieler — Coaching</title>
+  <meta name="description" content="Paul Sieler — Spirituelles Coaching. Begleitung auf deinem inneren Weg.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --cream: #f5f0e8;
+      --cream-light: #faf7f2;
+      --sage: #8a9a7b;
+      --sage-light: #b5c4a8;
+      --gold: #c4a265;
+      --gold-muted: #d4bc8a;
+      --forest: #1a1a1a;
+      --anthracite: #000000;
+      --warm-gray: #7a7368;
+      --warm-gray-light: #a39d94;
+      --white: #fffdf9;
+
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'DM Sans', -apple-system, sans-serif;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 6rem;
+      --space-2xl: 10rem;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-weight: 400;
+      color: var(--anthracite);
+      background-color: var(--cream-light);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+      background-color: var(--sage-light);
+      color: var(--forest);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ========== TYPOGRAPHY ========== */
+    h1, h2, h3 {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      letter-spacing: 0.04em;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      letter-spacing: 0.02em;
+    }
+
+    h3 {
+      font-size: clamp(1.3rem, 2vw, 1.8rem);
+      letter-spacing: 0.02em;
+    }
+
+    p {
+      font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+      max-width: 580px;
+    }
+
+    .small-text {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: var(--warm-gray);
+    }
+
+    /* ========== NAVIGATION ========== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-sm) var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.5s ease, backdrop-filter 0.5s ease;
+    }
+
+    nav.scrolled {
+      background-color: rgba(245, 240, 232, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    nav .logo {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--forest);
+    }
+
+    nav .nav-cta {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-light);
+      background-color: var(--forest);
+      padding: 0.55rem 1.4rem;
+      border-radius: 50px;
+      border: 1px solid var(--forest);
+      transition: all 0.4s ease;
+    }
+
+    nav .nav-cta:hover {
+      background-color: transparent;
+      color: var(--forest);
+    }
+
+    /* ========== HERO (redesigned) ========== */
+    .hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      justify-content: center;
+      background-image: url('images/hero-texture.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(250, 247, 242, 0.3) 0%,
+        rgba(250, 247, 242, 0) 30%,
+        rgba(250, 247, 242, 0) 70%,
+        rgba(250, 247, 242, 0.6) 100%
+      );
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-portrait {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: calc(var(--space-xl)) var(--space-md) 0;
+    }
+
+    .hero-portrait img {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Ticker / Marquee */
+    .hero-ticker-wrapper {
+      position: absolute;
+      bottom: 25%;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .hero-ticker {
+      display: flex;
+      width: max-content;
+      animation: ticker-scroll 50s linear infinite;
+    }
+
+    .hero-ticker span {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--warm-gray-light);
+      white-space: nowrap;
+      padding-right: 3rem;
+      letter-spacing: 0.03em;
+      opacity: 0.6;
+    }
+
+    @keyframes ticker-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ========== SECTION BASE ========== */
+    section {
+      padding: var(--space-2xl) var(--space-md);
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ========== STORY SECTIONS ========== */
+    .story-section {
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    .story-white {
+      background-color: var(--white);
+    }
+
+    .story-cream {
+      background-color: var(--cream);
+    }
+
+    .story-section .section-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+
+    .story-image {
+      position: relative;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .story-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .story-text p {
+      color: var(--warm-gray);
+      max-width: 580px;
+    }
+
+    /* ========== DIVIDER IMAGE ========== */
+    .divider-image {
+      padding: 0;
+      height: 50vh;
+      min-height: 300px;
+      overflow: hidden;
+    }
+
+    .divider-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ========== KONTAKT / CTA ========== */
+    .kontakt {
+      background-color: var(--white);
+    }
+
+    .kontakt .section-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .kontakt-text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .kontakt-text h2 {
+      color: var(--forest);
+      margin-bottom: var(--space-md);
+    }
+
+    .kontakt-text p {
+      color: var(--warm-gray);
+      margin-bottom: var(--space-lg);
+    }
+
+    /* CTA Button with hover phone reveal */
+    .cta-pill {
+      display: inline-block;
+      position: relative;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-light);
+      background-color: var(--forest);
+      padding: 0.8rem 2.2rem;
+      border-radius: 50px;
+      border: 1px solid var(--forest);
+      cursor: pointer;
+      transition: all 0.4s ease;
+      overflow: hidden;
+      text-align: center;
+      min-width: 220px;
+    }
+
+    .cta-pill .cta-label,
+    .cta-pill .cta-phone {
+      display: block;
+      transition: transform 0.4s cubic-bezier(0.25, 0, 0.25, 1),
+                  opacity 0.4s cubic-bezier(0.25, 0, 0.25, 1);
+    }
+
+    .cta-pill .cta-phone {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 60%);
+      opacity: 0;
+      white-space: nowrap;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: none;
+    }
+
+    .cta-pill:hover {
+      background-color: transparent;
+      color: var(--forest);
+    }
+
+    .cta-pill:hover .cta-label {
+      transform: translateY(-60%);
+      opacity: 0;
+    }
+
+    .cta-pill:hover .cta-phone {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      position: relative;
+      background-image: url('images/mid10.png');
+      background-size: cover;
+      background-position: center;
+      color: rgba(255, 253, 249, 0.7);
+      padding: var(--space-xl) var(--space-md) var(--space-lg);
+      text-align: center;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(26, 26, 26, 0.55);
+      z-index: 0;
+    }
+
+    footer .footer-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    footer .footer-logo {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      color: rgba(255, 253, 249, 0.8);
+    }
+
+    footer .footer-links {
+      display: flex;
+      gap: var(--space-md);
+      list-style: none;
+    }
+
+    footer .footer-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    footer .footer-links a:hover {
+      color: rgba(255, 253, 249, 0.9);
+    }
+
+    footer .footer-copy {
+      font-size: 0.75rem;
+    }
+
+    /* ========== LEGAL MODAL ========== */
+    .legal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(26, 26, 26, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .legal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .legal-modal {
+      background: var(--white);
+      color: var(--anthracite);
+      width: 90%;
+      max-width: 680px;
+      max-height: 85vh;
+      overflow-y: auto;
+      border-radius: 4px;
+      padding: var(--space-lg) var(--space-md);
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.25, 0, 0.25, 1);
+    }
+
+    .legal-overlay.active .legal-modal {
+      transform: translateY(0);
+    }
+
+    .legal-modal-close {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--warm-gray);
+      transition: color 0.3s ease;
+      line-height: 1;
+    }
+
+    .legal-modal-close:hover {
+      color: var(--anthracite);
+    }
+
+    .legal-modal h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: var(--space-md);
+      color: var(--forest);
+    }
+
+    .legal-modal h3 {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      margin-top: var(--space-md);
+      margin-bottom: var(--space-xs);
+      color: var(--forest);
+    }
+
+    .legal-modal p,
+    .legal-modal li {
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--warm-gray);
+      max-width: 100%;
+      margin-bottom: 0.6rem;
+    }
+
+    .legal-modal ul {
+      list-style: disc;
+      padding-left: 1.4rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .legal-modal a {
+      color: var(--sage);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .legal-modal a:hover {
+      color: var(--forest);
+    }
+
+    .legal-modal hr {
+      border: none;
+      border-top: 1px solid var(--cream);
+      margin: var(--space-md) 0;
+    }
+
+    .legal-modal::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .legal-modal::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .legal-modal::-webkit-scrollbar-thumb {
+      background: var(--warm-gray-light);
+      border-radius: 2px;
+    }
+
+    /* ========== ANIMATIONS ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0, 0.25, 1),
+                  transform 0.8s cubic-bezier(0.25, 0, 0.25, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 900px) {
+      .story-section .section-inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+
+      .story-image {
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      /* On mobile, always show image above text */
+      .story-cream .story-image {
+        order: -1;
+      }
+
+      .kontakt .section-inner {
+        gap: var(--space-lg);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-portrait {
+        padding: calc(var(--space-xl)) var(--space-md) 0;
+        justify-content: center;
+      }
+
+      .hero-portrait img {
+        max-width: 320px;
+      }
+
+      .hero-ticker-wrapper {
+        bottom: 22%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      section {
+        padding: var(--space-xl) var(--space-sm);
+      }
+
+      nav {
+        padding: var(--space-sm);
+      }
+
+      nav .nav-cta {
+        font-size: 0.65rem;
+        padding: 0.45rem 1.1rem;
+      }
+
+      .hero-portrait {
+        padding: calc(var(--space-xl)) var(--space-sm) 0;
+      }
+
+      .hero-portrait img {
+        max-width: 260px;
+      }
+
+      .hero-ticker span {
+        font-size: 2rem;
+      }
+
+      .hero-ticker-wrapper {
+        bottom: 20%;
+      }
+
+      .cta-pill {
+        padding: 0.7rem 1.8rem;
+        font-size: 0.78rem;
+        min-width: 200px;
+      }
+
+      footer .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+    <a href="#hero" class="logo">Paul</a>
+    <a href="#kontakt" class="nav-cta">Sessions</a>
+  </nav>
+
+  <!-- 1. HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-portrait">
+      <img src="images/portrait-paul.jpeg" alt="Paul Sieler" class="reveal">
+    </div>
+    <!-- Scrolling ticker -->
+    <div class="hero-ticker-wrapper">
+      <div class="hero-ticker">
+        <span>Energetic Alignment</span>
+        <span>Energetic Alignment</span>
+        <span>Energetic Alignment</span>
+        <span>Energetic Alignment</span>
+        <span>Energetic Alignment</span>
+        <span>Energetic Alignment</span>
+        <span>Energetic Alignment</span>
+        <span>Energetic Alignment</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. STORY 1: Mut -->
+  <section class="story-section story-white" id="ueber">
+    <div class="section-inner">
+      <div class="story-image reveal">
+        <img src="images/mid3.png" alt="Glasperlen" loading="lazy">
+      </div>
+      <div class="story-text">
+        <h2 class="reveal" style="font-style: italic; font-weight: 300; margin-bottom: var(--space-md);">Hallo, ich bin Paul.</h2>
+        <p class="reveal reveal-delay-1">
+          Ich kenne diese starke Sehnsucht, wenn alles in dir du selbst sein will, ganz in deiner Kraft. Als queerer Junge habe ich früh gelernt, Gefahr zu spüren, bevor sie da war. Ich konnte mit geschärften Antennen Räume lesen und präzise die Energien aller Leute fühlen. Das sensible Wahrnehmen war anstrengend und hat mich damals permanent überfordert. Die Welt fühlte sich bedrohlich an – bis ich tatsächlich nach einer Attacke im Krankenhaus landete. Dieser Moment war der Startpunkt für meine Reise der Selbst-Vervollständigung: noch auf Krücken startete ich mit Körpertherapie, Meditation, Familienaufstellungen, Energieheilung und duzenden andere Methoden zu forschen.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. STORY 2: Glaubwürdigkeit -->
+  <section class="story-section story-cream">
+    <div class="section-inner">
+      <div class="story-text">
+        <h2 class="reveal" style="font-style: italic; font-weight: 300; margin-bottom: var(--space-md);">Der Weg zur Selbst-Vervollständigung</h2>
+        <p class="reveal reveal-delay-1">
+          Ich begann zu lernen wer ich bin und wie ich ich ganz selbst sein kann. Je tiefer ich in die Welten von Energie und Integration eintauchte, desto mehr lebte ich zwischen zwei Welten. Auf der einen Seite meine weltlichen Ambitionen: Oxford-Studium, Produkt-Management-Karriere, Startup-Leben. Auf der anderen Seite die immer feinstofflichere Welt: Energie-Arbeit, Ashram-Monate und Workshop-Tournee. Das Verhältnis zwischen diesen Welten verschob sich immer mehr – bis ich meinen Job kündigte, eine Beziehung beendete, aus meiner Gemeinschaft auszog und einige Jahre lang auf spirituelle (Welt-)Reise ging.
+        </p>
+      </div>
+      <div class="story-image reveal">
+        <img src="images/mid4.png" alt="Fließendes Glas" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. STORY 3: Ergebnis -->
+  <section class="story-section story-white">
+    <div class="section-inner">
+      <div class="story-image reveal">
+        <img src="images/mid1.png" alt="Kristallblumen" loading="lazy">
+      </div>
+      <div class="story-text">
+        <h2 class="reveal" style="font-style: italic; font-weight: 300; margin-bottom: var(--space-md);">Meine Arbeit mit Anderen</h2>
+        <p class="reveal reveal-delay-1">
+          Immer mehr begannen sich andere für das zu interessieren was ich auf diesem Weg lernte. Leute kamen auf mich zu mich nach meiner Intuition zu Dingen zu fragen, nach Rat, Übungen, Einschätzungen, Nervensystem-Regulation. Ich merkte, wie viel Energie mir das gab. Gleichzeitig begannen sich immer öfters die richtigen Begegnungen und Gelegenheiten zu zeigen: eine ungeplante Traumwohnung, neue Klienten, finanzielles Glück – und vor allem: innerer Frieden. Immer mehr energetisches Alignment. Und das ist es, woran ich seitdem auch mit Anderen arbeite.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. LASS UNS SPRECHEN -->
+  <section class="kontakt" id="kontakt">
+    <div class="section-inner">
+      <div class="kontakt-text">
+        <h2 class="reveal">So kannst du mit mir arbeiten</h2>
+        <p class="reveal reveal-delay-1">
+          Ich biete aktuell 1:1-Sessions per Video an. Dabei nutzen wir besonders Energie-Arbeit, Frequenz-Heilung und Somatic Experiencing.
+        </p>
+        <a href="https://wa.me/491756165395" target="_blank" rel="noopener" class="cta-pill reveal reveal-delay-2">
+          <span class="cta-label">Termin finden</span>
+          <span class="cta-phone">+49 175 6165395</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-logo">Paul Sieler</span>
+      <ul class="footer-links">
+        <li><a href="#kontakt">Session buchen</a></li>
+        <li><a href="#" id="open-legal">Impressum & Datenschutz</a></li>
+      </ul>
+      <p class="footer-copy">&copy; 2026 Paul Sieler. Alle Rechte vorbehalten.</p>
+    </div>
+  </footer>
+
+  <!-- LEGAL MODAL -->
+  <div class="legal-overlay" id="legal-overlay">
+    <div class="legal-modal">
+      <button class="legal-modal-close" id="close-legal">&times;</button>
+
+      <h2>Impressum & Datenschutz</h2>
+
+      <h3>Impressum</h3>
+      <p>
+        Verantwortlich für diese Website:<br>
+        Steffen Sieler<br>
+        Kurfürstendamm 159<br>
+        10709 Berlin<br>
+        Deutschland
+      </p>
+
+      <p>
+        <strong>Kontakt:</strong><br>
+        Telefon: +49 175 6165395<br>
+        E-Mail: <a href="mailto:s.sieler@zeppelin-university.net">s.sieler@zeppelin-university.net</a>
+      </p>
+
+      <p>
+        <strong>Verantwortlich für den Inhalt:</strong><br>
+        Steffen Sieler, Kurfürstendamm 159, 10709 Berlin
+      </p>
+
+      <hr>
+
+      <h3>Datenschutzerklärung</h3>
+
+      <p><strong>1. Einleitung</strong><br>
+        Der Schutz Ihrer Daten ist uns wichtig. Sie können unsere Website besuchen, ohne persönliche Angaben zu machen. Wenn wir persönliche Daten von Ihnen brauchen (z.&nbsp;B. Name oder E-Mail), geschieht das freiwillig und nach den Regeln der Datenschutz-Grundverordnung (DSGVO) und des Bundesdatenschutzgesetzes (BDSG).
+      </p>
+
+      <p><strong>2. Wer ist verantwortlich?</strong><br>
+        Steffen Sieler<br>
+        Kurfürstendamm 159, 10709 Berlin<br>
+        Telefon: +49 175 6165395<br>
+        E-Mail: <a href="mailto:s.sieler@zeppelin-university.net">s.sieler@zeppelin-university.net</a>
+      </p>
+
+      <p><strong>3. Welche Daten werden beim Besuch gespeichert?</strong><br>
+        Wenn Sie unsere Website besuchen, erfassen wir automatisch einige technische Daten, zum Beispiel:
+      </p>
+      <ul>
+        <li>Ihre (anonymisierte) IP-Adresse</li>
+        <li>Datum und Uhrzeit des Besuchs</li>
+        <li>Browser und Betriebssystem</li>
+        <li>Die Seite, von der Sie zu uns gekommen sind (Referrer)</li>
+        <li>Den Namen Ihres Internetanbieters</li>
+      </ul>
+      <p>
+        Diese Daten nutzen wir nur, um die Website sicher und stabil zu betreiben. Sie werden nicht mit anderen Daten zusammengeführt und keiner Person zugeordnet.
+      </p>
+
+      <p><strong>4. Cookies</strong><br>
+        Unsere Website verwendet Cookies, damit alles reibungslos funktioniert. Sie können in Ihrem Browser einstellen, ob Sie Cookies erlauben möchten. Wenn Sie Cookies ausschalten, kann es sein, dass manche Funktionen nicht mehr richtig arbeiten.
+      </p>
+
+      <p><strong>5. Kontaktaufnahme</strong><br>
+        Wenn Sie uns per E-Mail oder über Messenger-Dienste (z.&nbsp;B. WhatsApp) kontaktieren, speichern wir Ihre Angaben, um Ihre Anfrage zu beantworten. Wir geben Ihre Daten nicht ohne Ihre Erlaubnis weiter.
+      </p>
+
+      <p><strong>6. Instagram</strong><br>
+        Auf unserer Website gibt es ggf. Funktionen von Instagram. Wenn Sie diese nutzen, kann Instagram Daten mit Ihrem Account verknüpfen. Mehr dazu erfahren Sie direkt bei Instagram.
+      </p>
+
+      <p><strong>7. Ihre Rechte</strong><br>
+        Sie haben das Recht:
+      </p>
+      <ul>
+        <li>zu erfahren, welche Daten wir über Sie speichern,</li>
+        <li>Ihre Daten berichtigen oder löschen zu lassen,</li>
+        <li>die Verarbeitung einzuschränken,</li>
+        <li>Ihre Daten mitzunehmen (Datenübertragbarkeit),</li>
+        <li>der Verarbeitung zu widersprechen.</li>
+      </ul>
+      <p>
+        Melden Sie sich dazu einfach bei: <a href="mailto:s.sieler@zeppelin-university.net">s.sieler@zeppelin-university.net</a>
+      </p>
+
+      <p><strong>8. Wie lange speichern wir Ihre Daten?</strong><br>
+        Wir speichern Ihre Daten nur so lange, wie es für den jeweiligen Zweck nötig ist oder wie es das Gesetz vorschreibt.
+      </p>
+
+      <p><strong>9. Datensicherheit</strong><br>
+        Wir schützen Ihre Daten durch technische und organisatorische Maßnahmen vor Verlust, Missbrauch oder unberechtigtem Zugriff.
+      </p>
+
+      <p><strong>10. Streitbeilegung</strong><br>
+        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+      </p>
+
+      <p><strong>11. Änderungen</strong><br>
+        Wir passen diese Datenschutzerklärung gelegentlich an, damit sie immer aktuell bleibt.
+      </p>
+
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Trigger hero elements immediately
+    document.querySelectorAll('.hero .reveal').forEach(el => {
+      setTimeout(() => el.classList.add('visible'), 300);
+    });
+
+    // Observe all other reveal elements
+    revealElements.forEach(el => {
+      if (!el.closest('.hero')) {
+        observer.observe(el);
+      }
+    });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        if (this.id === 'open-legal') return; // handled separately
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Legal modal
+    const legalOverlay = document.getElementById('legal-overlay');
+    const openLegal = document.getElementById('open-legal');
+    const closeLegal = document.getElementById('close-legal');
+
+    openLegal.addEventListener('click', function(e) {
+      e.preventDefault();
+      legalOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    closeLegal.addEventListener('click', function() {
+      legalOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    legalOverlay.addEventListener('click', function(e) {
+      if (e.target === legalOverlay) {
+        legalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && legalOverlay.classList.contains('active')) {
+        legalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+
+</body>
+</html>
