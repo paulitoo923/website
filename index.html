@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Paul Sieler — Coming soon</title>
-  <meta name="description" content="Diese Seite wird gerade überarbeitet. Bald wieder hier.">
+  <meta name="description" content="Coming soon.">
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
@@ -21,169 +21,181 @@
     }
 
     :root {
-      --cream: #f5f0e8;
       --cream-light: #faf7f2;
       --forest: #1a1a1a;
-      --anthracite: #000000;
-      --warm-gray: #7a7368;
-      --warm-gray-light: #a39d94;
+      --white: #fffdf9;
 
       --font-serif: 'Playfair Display', Georgia, serif;
       --font-sans: 'DM Sans', -apple-system, sans-serif;
+
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
     }
 
-    html {
-      font-size: 16px;
-    }
+    html { font-size: 16px; }
 
     body {
       font-family: var(--font-sans);
-      font-weight: 400;
-      color: var(--anthracite);
-      background-color: var(--cream-light);
+      color: var(--white);
+      background-color: var(--forest);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      min-height: 100dvh;
+      overflow: hidden;
     }
 
-    ::selection {
-      background-color: #b5c4a8;
-      color: var(--forest);
-    }
+    a { color: inherit; text-decoration: none; }
 
+    /* ========== FULLSCREEN VIDEO STAGE ========== */
     .stage {
       position: relative;
-      min-height: 100vh;
-      min-height: 100dvh;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      overflow: hidden;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: var(--space, 2rem);
-      overflow: hidden;
-      background-image: url('images/hero-texture.webp');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      padding: var(--space-md);
     }
 
-    /* Soft cream veil so text stays legible over the texture */
-    .stage::after {
+    .stage-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    /* Dark veil for legibility — same feel as the old footer */
+    .stage::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(250, 247, 242, 0.55) 0%,
-        rgba(250, 247, 242, 0.35) 45%,
-        rgba(250, 247, 242, 0.65) 100%
-      );
-      pointer-events: none;
+      background: rgba(26, 26, 26, 0.45);
       z-index: 1;
     }
 
-    .content {
+    .stage-inner {
       position: relative;
       z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.6rem;
+      gap: var(--space-lg);
       opacity: 0;
       transform: translateY(24px);
-      animation: rise 1.1s cubic-bezier(0.25, 0, 0.25, 1) 0.15s forwards;
+      animation: rise 1.2s cubic-bezier(0.25, 0, 0.25, 1) 0.2s forwards;
     }
 
-    .eyebrow {
-      font-family: var(--font-sans);
-      font-size: 0.8rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      font-weight: 400;
-      color: var(--warm-gray);
-    }
-
-    h1 {
+    /* "Coming soon" — same styling as the name in the old footer */
+    .headline {
       font-family: var(--font-serif);
+      font-size: 1.2rem;
       font-weight: 300;
       font-style: italic;
-      line-height: 1.1;
-      letter-spacing: 0.02em;
-      font-size: clamp(3rem, 9vw, 6rem);
-      color: var(--forest);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
     }
 
-    .tagline {
-      font-family: var(--font-sans);
-      font-weight: 300;
-      font-size: clamp(0.95rem, 1.4vw, 1.15rem);
-      color: var(--warm-gray);
-      max-width: 34ch;
-    }
-
-    .divider {
-      width: 46px;
-      height: 1px;
-      background-color: var(--warm-gray-light);
-      opacity: 0.7;
-      margin: 0.4rem 0;
-    }
-
-    .contact {
+    /* ========== CTA (same pill as old "Termin finden") ========== */
+    .cta-pill {
+      display: inline-block;
       position: relative;
-      z-index: 2;
-      margin-top: auto;
-      padding-top: 3rem;
       font-family: var(--font-sans);
-      font-size: 0.78rem;
-      letter-spacing: 0.06em;
-      color: var(--warm-gray);
+      font-size: 0.82rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-light);
+      background-color: var(--forest);
+      padding: 0.8rem 2.2rem;
+      border-radius: 50px;
+      border: 1px solid var(--white);
+      cursor: pointer;
+      transition: all 0.4s ease;
+      overflow: hidden;
+      text-align: center;
+      min-width: 220px;
+    }
+
+    .cta-pill .cta-label,
+    .cta-pill .cta-phone {
+      display: block;
+      transition: transform 0.4s cubic-bezier(0.25, 0, 0.25, 1),
+                  opacity 0.4s cubic-bezier(0.25, 0, 0.25, 1);
+    }
+
+    .cta-pill .cta-phone {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, 60%);
       opacity: 0;
-      animation: fade 1.4s ease 0.6s forwards;
+      white-space: nowrap;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: none;
     }
 
-    .contact a {
+    .cta-pill:hover {
+      background-color: var(--white);
       color: var(--forest);
-      text-decoration: none;
-      border-bottom: 1px solid var(--warm-gray-light);
-      padding-bottom: 1px;
-      transition: border-color 0.3s ease;
     }
 
-    .contact a:hover {
-      border-color: var(--forest);
+    .cta-pill:hover .cta-label {
+      transform: translateY(-60%);
+      opacity: 0;
+    }
+
+    .cta-pill:hover .cta-phone {
+      transform: translate(-50%, -50%);
+      opacity: 1;
+    }
+
+    /* ========== COPYRIGHT (same as old footer copy) ========== */
+    .copyright {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--white);
     }
 
     @keyframes rise {
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes fade {
-      to { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .stage-inner { animation: none; opacity: 1; transform: none; }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .content, .contact {
-        animation: none;
-        opacity: 1;
-        transform: none;
-      }
+    @media (max-width: 600px) {
+      .stage-inner { gap: var(--space-md); }
+      .cta-pill { padding: 0.7rem 1.8rem; font-size: 0.78rem; min-width: 200px; }
     }
   </style>
 </head>
 <body>
+
   <main class="stage">
-    <div class="content">
-      <p class="eyebrow">Paul Sieler</p>
-      <h1>Coming soon</h1>
-      <div class="divider"></div>
-      <p class="tagline">Diese Seite wird gerade neu gestaltet. Bald wieder hier.</p>
+    <video class="stage-video" autoplay muted loop playsinline poster="images/mid1.png">
+      <source src="images/vid10.mp4" type="video/mp4">
+    </video>
+
+    <div class="stage-inner">
+      <h1 class="headline">Coming soon</h1>
+
+      <a href="https://wa.me/491756165395" target="_blank" rel="noopener" class="cta-pill">
+        <span class="cta-label">Contact</span>
+        <span class="cta-phone">+49 175 6165395</span>
+      </a>
+
+      <p class="copyright">&copy; 2026 Paul Sieler. Alle Rechte vorbehalten.</p>
     </div>
-    <p class="contact">
-      Kontakt: <a href="mailto:s.sieler@zeppelin-university.net">s.sieler@zeppelin-university.net</a>
-    </p>
   </main>
+
 </body>
 </html>
