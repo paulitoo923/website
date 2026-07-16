@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "highlysensitiveclub.com" }],
+      "destination": "https://paulsieler.com/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.highlysensitiveclub.com" }],
+      "destination": "https://paulsieler.com/:path*",
+      "permanent": false
+    }
+  ]
+}
