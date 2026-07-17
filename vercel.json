@@ -1,16 +1,24 @@
 {
-  "redirects": [
+  "rewrites": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "highlysensitiveclub.com" }],
-      "destination": "https://paulsieler.com/:path*",
-      "permanent": false
+      "destination": "/highlysensitiveclub.html"
     },
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.highlysensitiveclub.com" }],
-      "destination": "https://paulsieler.com/:path*",
-      "permanent": false
+      "destination": "/highlysensitiveclub.html"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "highlysensitive.club" }],
+      "destination": "/highlysensitiveclub.html"
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.highlysensitive.club" }],
+      "destination": "/highlysensitiveclub.html"
     }
   ]
 }
